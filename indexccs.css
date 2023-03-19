@@ -1,0 +1,26 @@
+
+body{
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-evenly;
+
+}
+div.a{
+    text-align: center;
+    align-items: center
+}
+
+
+.users{
+
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
+    width: 45%;
+    height: 50px;
+    margin: 10px;
+    border: black;
+    background: #c4e3d5;
+    justify-content: center;
+
+}

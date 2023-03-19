@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ua">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>userdetails</title>
+  <style>
+   body
+   {flex-wrap: wrap;
+     text-align: center;
+     align-items: center}
+  .butt{
+width: 90%;
+  }
+</style>
+</head>
+
+<body>
+<div id="start"></div>
+<div id="button"></div>
+<script>
+  let url =new URL(location.href);
+  let jason = url.searchParams.get('data')
+  let user =JSON.parse(jason)
+  console.log(user);
+  let s = jason.replaceAll('{','')
+  let d=s.replaceAll('}','')
+  let f=d.replaceAll('"address":','"*******address**********":,');
+  let g=f.replaceAll('"company":','"************company"***********:,');
+  console.log(d);
+  let q=g.split(',')
+  console.log(q);
+  for (const string of q) {
+    let big= document.createElement('ul');
+    big.innerHTML= `${string}`
+    document.getElementById("start").appendChild(big)
+  }
+
+
+  const btn = document.createElement("button");
+  btn.classList='butt'
+  let a=document.createElement('a')
+  a.innerText = "post of current user"
+  a.href='http://localhost:63342/miniProjectKyreya/postdetails.html?data='+JSON.stringify(user.id);
+  btn.appendChild(a)
+  document.getElementById("button").appendChild(btn);
+
+
+
+</script>
+</body>
+</html>

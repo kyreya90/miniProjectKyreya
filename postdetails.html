@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body{
+      flex-wrap: wrap;
+      display: flex;
+      justify-content: space-evenly;
+    }
+    div {
+      width: 17%;
+      margin: 1%;
+      border: black;
+      background: #c4e3d5;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      text-align: center;
+      align-items: center;
+
+    }
+    div.user{
+      width: 98%;
+      height:70%;
+      margin: 1%;
+    }
+    div.knopka{
+      width: 98%;
+    }
+.kn{
+  width: 98%;
+}
+  </style>
+</head>
+<body>
+<script>
+  let url =new URL(location.href);
+  let jason = url.searchParams.get('data')
+  let user =JSON.parse(jason)
+  console.log(user);
+  let posts=fetch('http://jsonplaceholder.typicode.com/posts')
+          .then(value => value.json())
+          .then(posts=> {
+            for (const post of posts) {
+              if(post.userId===user){
+                let div =document.createElement('div')
+                let div2=document.createElement('div')
+                div2.classList.add('user')
+                div2.innerText=`${post.id}-${post.title}`
+                div.appendChild(div2);
+                let div3=document.createElement('div')
+                div3.classList.add('knopka')
+                div.appendChild(div3);
+                let butt2=document.createElement('button')
+                butt2.classList.add('kn')
+                let a=document.createElement('a')
+                a.innerText='more'
+                a.href='http://localhost:63342/miniProjectKyreya/Allpostdetails.html?data='+JSON.stringify(post);
+                butt2.appendChild(a)
+                div3.appendChild(butt2)
+                document.body.appendChild(div)
+
+                // let divv
+                // let div =document.createElement('button')
+                // div.classList.add('post-item')
+                // let a=document.createElement('a')
+                // a.innerText=`${post.id}   title - ${post.title}`;
+                // a.href='http://localhost:63342/miniProjectKyreya/Allpostdetails.html?data='+JSON.stringify(post)
+                // div.appendChild(a);
+                // document.body.appendChild(div)}
+            }
+
+          }});
+
+
+</script>
+</body>
+</html>
